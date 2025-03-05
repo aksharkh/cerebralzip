@@ -13,7 +13,7 @@ function Bottom() {
         console.log("Fetching Bottom API Data...");
 
         const response = await axios.get(
-          "http://3.111.196.92:8020/api/v1/sample_assignment_api_5/",
+          "https://cerebralzip-115l.onrender.com/proxy/api5",
           {
             headers: {
               Accept: "application/json",

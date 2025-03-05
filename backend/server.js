@@ -41,22 +41,27 @@ const reviewtableSchema = new mongoose.Schema({
 const Bardataset = mongoose.model("bardataset", bardatasetSchema, "bardataset");
 const ReviewTable = mongoose.model("reviewtable", reviewtableSchema, "reviewtable");
 
-app.post("/proxy/login", async (req, res) => {
+const proxyApiRequest = async (req, res, apiUrl) => {
   try {
     const apiResponse = await axios.post(
-      "http://3.111.196.92:8020/api/v1/login/", // Backend calls HTTP API
+      apiUrl,
       req.body,
       {
         auth: { username: "trial", password: "assignment123" },
-        headers: { "Content-Type": "application/json" }, // 🔴 Explicitly set headers
       }
     );
     res.json(apiResponse.data);
   } catch (error) {
-    console.error("Proxy Login Error:", error);
+    console.error(`Proxy error for ${apiUrl}:`, error.message);
     res.status(error.response?.status || 500).json({ error: "Proxy Error" });
   }
-});
+};
+
+// 🔹 Proxy routes
+app.post("/proxy/login", (req, res) => proxyApiRequest(req, res, "http://3.111.196.92:8020/api/v1/login/"));
+app.post("/proxy/api1", (req, res) => proxyApiRequest(req, res, "http://3.111.196.92:8020/api/v1/sample_assignment_api_1/"));
+app.post("/proxy/api4", (req, res) => proxyApiRequest(req, res, "http://3.111.196.92:8020/api/v1/sample_assignment_api_4/"));
+app.post("/proxy/api5", (req, res) => proxyApiRequest(req, res, "http://3.111.196.92:8020/api/v1/sample_assignment_api_5/"));
 
 app.get("/api/bardataset", async (req, res) => {
   try {
