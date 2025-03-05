@@ -26,7 +26,7 @@ function Login() {
       console.log("Sending Login Request:", formData);
   
       const response = await axios.post(
-        "http://3.111.196.92:8020/api/v1/login/",
+        "https://cerebralzip-115l.onrender.com/proxy/login/",
         formData,
         {
           headers: { "Content-Type": "application/json" },

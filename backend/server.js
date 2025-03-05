@@ -40,7 +40,20 @@ const reviewtableSchema = new mongoose.Schema({
 const Bardataset = mongoose.model("bardataset", bardatasetSchema, "bardataset");
 const ReviewTable = mongoose.model("reviewtable", reviewtableSchema, "reviewtable");
 
-
+app.post("/proxy/login", async (req, res) => {
+  try {
+    const apiResponse = await axios.post(
+      "http://3.111.196.92:8020/api/v1/login/", // Backend calls HTTP API
+      req.body,
+      {
+        auth: { username: "trial", password: "assignment123" },
+      }
+    );
+    res.json(apiResponse.data);
+  } catch (error) {
+    res.status(error.response?.status || 500).json({ error: "Proxy Error" });
+  }
+});
 
 app.get("/api/bardataset", async (req, res) => {
   try {
