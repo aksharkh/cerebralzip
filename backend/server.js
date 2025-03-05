@@ -3,6 +3,7 @@ require("dotenv").config();
 const express = require("express");
 const mongoose = require("mongoose");
 const cors = require("cors");
+const axios = require("axios");
 
 const app = express();
 app.use(cors());
@@ -47,10 +48,12 @@ app.post("/proxy/login", async (req, res) => {
       req.body,
       {
         auth: { username: "trial", password: "assignment123" },
+        headers: { "Content-Type": "application/json" }, // 🔴 Explicitly set headers
       }
     );
     res.json(apiResponse.data);
   } catch (error) {
+    console.error("Proxy Login Error:", error);
     res.status(error.response?.status || 500).json({ error: "Proxy Error" });
   }
 });
