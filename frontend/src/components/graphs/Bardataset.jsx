@@ -17,7 +17,7 @@ function Bardataset() {
   const [error, setError] = useState(null);
 
   useEffect(() => {
-    fetch("http://localhost:5000/api/bardataset")
+    fetch("https://cerebralzip-115l.onrender.com/api/bardataset")
       .then((res) => res.json())
       .then((data) => {
         console.log("Graph Data Received:", data);

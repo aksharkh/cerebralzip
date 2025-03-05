@@ -28,7 +28,7 @@ function ReviewTable() {
   useEffect(() => {
     const fetchReviewTable = async () => {
       try {
-        const response = await axios.get("http://localhost:5000/api/reviewtable");
+        const response = await axios.get("https://cerebralzip-115l.onrender.com/api/reviewtable");
         const formattedData = response.data.map((item, index) => ({
           id: index + 1,
           product: item.product,
