@@ -3,6 +3,7 @@ import { Box, Card, Typography, Button } from '@mui/material';
 import Cards from './cards/Cards';
 import Bardataset from './graphs/Bardataset';
 import ReviewTable from './graphs/ReviewTable';
+import KeyboardArrowDown from '@mui/icons-material/KeyboardArrowDown';
 
 function Maindash() {
   return (
@@ -26,10 +27,11 @@ function Maindash() {
           justifyContent: 'space-between',
           alignItems: 'center',
           height: '10%',  
-          width: '100%' // Prevents horizontal overflow
+          width: '100%', // Prevents horizontal overflow
+          paddingBottom: 2,
         }}
       >
-        <Typography variant="h4" fontWeight="bold">
+        <Typography variant="h5" fontWeight="bold">
           Dashboard
         </Typography>
 
@@ -48,6 +50,7 @@ function Maindash() {
             }}
           >
             Last year
+            <KeyboardArrowDown />
           </Button>
         </Box>
       </Box>
@@ -68,12 +71,12 @@ function Maindash() {
         </Box>
 
         {/* Bar Dataset */}
-        <Box sx={{ flex: '1 1 40%' }}>  
+        <Box sx={{ flex: '1 1 50%' }}>  
           <Bardataset />
         </Box>
 
         {/* Review Table */}
-        <Box sx={{ flex: '1 1 30%' }}>  
+        <Box sx={{ flex: '1 1 40%' }}>  
           <ReviewTable />
         </Box>
       </Box>

@@ -1,11 +1,12 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Box, Button, Typography } from '@mui/material';
 import { DataGrid } from '@mui/x-data-grid';
 import StarIcon from '@mui/icons-material/Star';
+import axios from 'axios';
 
 const columns = [
-  { field: 'productName', headerName: 'Product Name', width: 160 },
-  { field: 'unitsSold', headerName: 'Units Sold', width: 120, type: 'number' },
+  { field: 'product', headerName: 'Product Name', width: 160 },
+  { field: 'soldAmount', headerName: 'Units Sold', width: 120, type: 'number' },
   { field: 'revenue', headerName: 'Revenue ($)', width: 120, type: 'number' },
   {
     field: 'rating',
@@ -20,17 +21,34 @@ const columns = [
   },
 ];
 
-const rows = [
-  { id: 1, productName: 'Laptop', unitsSold: 150, revenue: 45000, rating: 4 },
-  { id: 2, productName: 'Smartphone', unitsSold: 200, revenue: 60000, rating: 5 },
-  { id: 3, productName: 'Tablet', unitsSold: 100, revenue: 25000, rating: 3 },
-  { id: 4, productName: 'Smartwatch', unitsSold: 120, revenue: 18000, rating: 4 },
-  { id: 5, productName: 'Headphones', unitsSold: 300, revenue: 24000, rating: 5 },
-];
-
 function ReviewTable() {
+  const [rows, setRows] = useState([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const fetchReviewTable = async () => {
+      try {
+        const response = await axios.get("http://localhost:5000/api/reviewtable");
+        const formattedData = response.data.map((item, index) => ({
+          id: index + 1, // Assign unique IDs
+          product: item.product,
+          soldAmount: item.soldAmount,
+          revenue: item.revenue,
+          rating: item.rating,
+        }));
+        setRows(formattedData);
+      } catch (error) {
+        console.error("Error fetching reviewtable data:", error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchReviewTable();
+  }, []);
+
   return (
-    <Box sx={{ padding: 1, borderRadius: 2, height: 200 }}>
+    <Box sx={{ padding: 1, borderRadius: 2, height: 250 }}>
       {/* Header Section */}
       <Box display="flex" justifyContent="space-between" alignItems="center" mb={1}>
         <Typography variant="h6" fontWeight="bold">Products</Typography>
@@ -42,6 +60,7 @@ function ReviewTable() {
             padding: '4px 8px',
             backgroundColor: 'transparent',
             color: 'black',
+            textTransform: 'none',
           }}
         >
           Full Results
@@ -53,21 +72,22 @@ function ReviewTable() {
         <DataGrid
           rows={rows}
           columns={columns}
+          loading={loading}
           pageSizeOptions={[5]}
           disableRowSelectionOnClick
           hideFooter
           rowHeight={40}  
           sx={{
-            backgroundColor: 'transparent',  // Transparent table background
-            border: 'none',                  // Remove grid border
+            backgroundColor: 'transparent',  
+            border: 'none',                  
             '& .MuiDataGrid-cell': {
-              borderBottom: 'none',          // Remove cell borders
+              borderBottom: 'none',          
             },
             '& .MuiDataGrid-columnHeaders': {
-              backgroundColor: 'transparent', // Remove column header background
+              backgroundColor: 'transparent',
             },
             '& .MuiDataGrid-root': {
-              backgroundColor: 'transparent', // Ensure root is transparent
+              backgroundColor: 'transparent',
             }
           }}
         />

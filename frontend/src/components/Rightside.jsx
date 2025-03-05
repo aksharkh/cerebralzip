@@ -26,12 +26,7 @@ function Rightside() {
         }}
       >
         <Guage />
-        <Typography variant="h6"   sx={{ mb: 2,textAlign: 'center' }}>
-    You're Good!
-  </Typography>
-        <Typography variant="h9" fontWeight="light"  sx={{ mb: 2,textAlign: 'left' }}>
-    Your sales performance score is better than 70% other users.
-  </Typography>
+        
       </Card>
 
       {/* Graph Card */}

@@ -1,30 +1,79 @@
-import React from 'react'
-import { LineChart } from '@mui/x-charts/LineChart';
-
-const uData = [4000, 3000, 2000, 2780, 1890, 2390, 3490];
-const pData = [2400, 1398, 9800, 3908, 4800, 3800, 4300];
-const xLabels = [
-  'Page A',
-  'Page B',
-  'Page C',
-  'Page D',
-  'Page E',
-  'Page F',
-  'Page G',
-];
+import React, { useEffect, useState } from "react";
+import { LineChart } from "@mui/x-charts/LineChart";
+import axios from "axios";
+import { Box, CircularProgress, Typography } from "@mui/material";
 
 function Graph() {
+  const [data, setData] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState("");
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        console.log("Fetching Graph API Data...");
+
+        const response = await axios.get(
+          "http://3.111.196.92:8020/api/v1/sample_assignment_api_4/",
+          {
+            headers: {
+              "Accept": "application/json",
+              "Authorization": "Basic " + btoa("trial:assignment123"),
+            },
+          }
+        );
+
+        console.log("Graph API Response:", response.data);
+
+        if (Array.isArray(response.data) && response.data.length > 0) {
+          setData(response.data);
+        } else {
+          console.error("Unexpected API response format:", response.data);
+          setError("Invalid API response format.");
+        }
+      } catch (err) {
+        console.error("Error fetching data:", err);
+        setError("Failed to load data.");
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchData();
+  }, []);
+
+  if (loading) {
+    return (
+      <Box display="flex" justifyContent="center" alignItems="center" height="200px">
+        <CircularProgress />
+      </Box>
+    );
+  }
+
+  if (error) {
+    return (
+      <Box textAlign="center" color="red">
+        <Typography>{error}</Typography>
+      </Box>
+    );
+  }
+
+  // Extract x and y-axis values
+  const xLabels = data.map((item) => item.date2); // Dates as x-axis
+  const uniqueCountData = data.map((item) => item.unique_count);
+  const cumulativeTweetsData = data.map((item) => item.cumulative_tweets);
+
   return (
     <LineChart
-      width={250}
-      height={200}
-      series={[
-        { data: pData, label: 'pv' },
-        { data: uData, label: 'uv' },
-      ]}
-      xAxis={[{ scaleType: 'point', data: xLabels }]}
-    />
-  )
+    width={300}
+    height={200}
+    series={[
+      { data: uniqueCountData, label: "Unique Count", color: "#B0EDFB", strokeWidth: 1, opacity: 0.6 },
+      { data: cumulativeTweetsData, label: "Cumulative Tweets", color: "#0068F7", strokeWidth: 1, opacity: 0.6 },
+    ]}
+    
+  />
+  );
 }
 
-export default Graph
+export default Graph;

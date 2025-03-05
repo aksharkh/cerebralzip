@@ -7,9 +7,9 @@ import Box from '@mui/material/Box';
 
 function Main() {
   return (
-    <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100vh', width: '100vw', background: '#E2E6EB' }}>
+    <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100vh', width: '100vw', background: '#A9AFBB' }}>
       <Card sx={{ 
-        backgroundColor: '#F4F5F8',
+        backgroundColor: '#E4E8EA',
         height: '97%',
         width: '97%',
         borderRadius: '16px', 

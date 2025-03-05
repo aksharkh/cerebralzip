@@ -2,8 +2,13 @@ import React from 'react';
 import { Box, List, ListItem, ListItemIcon, ListItemText, Typography, Card, ListItemButton } from '@mui/material';
 import DashboardIcon from '@mui/icons-material/Dashboard';
 import SettingsIcon from '@mui/icons-material/Settings';
-import LogoutIcon from '@mui/icons-material/Logout';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
+import PeopleAlt from '@mui/icons-material/PeopleAlt';
+import BarChart from '@mui/icons-material/BarChart';
+import AccountTree from '@mui/icons-material/AccountTree';
+import Toc from '@mui/icons-material/Toc';
+
+
 
 function Sidebar() {
   return (
@@ -26,9 +31,12 @@ function Sidebar() {
       {/* Sidebar List */}
       <List>
         {[
-          { icon: <DashboardIcon />, text: 'Dashboard' },
           { icon: <SettingsIcon />, text: 'Settings' },
-          { icon: <LogoutIcon />, text: 'Logout' }
+          { icon: <PeopleAlt />, text: 'Team' },
+          { icon: <DashboardIcon />, text: 'Dashboard' },
+          { icon: <BarChart />, text: 'Campaigns' },
+          { icon: <AccountTree />, text: 'Flows' },
+          { icon: <Toc />, text: 'Customers' }
         ].map((item, index) => (
           <ListItemButton
             key={index}
@@ -47,6 +55,8 @@ function Sidebar() {
             <ListItemIcon sx={{
       color: 'black',
       minWidth: '35px', // Reduce default spacing
+      
+
     }}>
               {item.icon}
             </ListItemIcon  >
@@ -69,7 +79,7 @@ function Sidebar() {
         '&:hover': { backgroundColor: 'white' },
       }}
     >
-      <AccountCircleIcon sx={{ fontSize: 40, color: 'black', mr: 1 }} />
+      <AccountCircleIcon sx={{ fontSize: 40, color: 'gray', mr: 1 }} />
       <ListItemText
         primary="Akshar"
         primaryTypographyProps={{ fontSize: '16px', fontWeight: 'bold' }}
