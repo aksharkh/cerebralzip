@@ -16,7 +16,7 @@ function Guage() {
         console.log("Fetching Gauge API Data...");
 
         const response = await axios.get(
-          "http://3.111.196.92:8020/api/v1/sample_assignment_api_3/",
+          "https://cerebralzip-115l.onrender.com/proxy/api3",
           {
             headers: {
               "Accept": "application/json",

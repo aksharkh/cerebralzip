@@ -12,10 +12,10 @@ app.use(express.json());
 const mongoURI = process.env.MONGO_URI + "/dashboard";
 mongoose
   .connect(mongoURI, { useNewUrlParser: true, useUnifiedTopology: true })
-  .then(() => console.log("✅ Connected to MongoDB - dashboard database"))
-  .catch((err) => console.error("❌ MongoDB connection error:", err));
+  .then(() => console.log("Connected to MongoDB - dashboard database"))
+  .catch((err) => console.error("MongoDB connection error:", err));
 
-// Define Schemas
+
 const bardatasetSchema = new mongoose.Schema({
   Month: String,
   Last_year: Number,
@@ -30,11 +30,11 @@ const reviewtableSchema = new mongoose.Schema({
   rating: Number,
 });
 
-// Define Models
+
 const Bardataset = mongoose.model("bardataset", bardatasetSchema, "bardataset");
 const ReviewTable = mongoose.model("reviewtable", reviewtableSchema, "reviewtable");
 
-// Helper function for proxying API requests
+
 const proxyApiRequest = async (req, res, apiUrl) => {
   try {
     const apiResponse = await axios.get(apiUrl, {
@@ -47,12 +47,12 @@ const proxyApiRequest = async (req, res, apiUrl) => {
   }
 };
 
-// 🔹 Authentication (POST request)
+
 app.post("/proxy/login", async (req, res) => {
   try {
     const apiResponse = await axios.post(
       "http://3.111.196.92:8020/api/v1/login/",
-      req.body, // Send login credentials from frontend
+      req.body, 
       { auth: { username: "trial", password: "assignment123" } }
     );
     res.json(apiResponse.data);
@@ -62,7 +62,7 @@ app.post("/proxy/login", async (req, res) => {
   }
 });
 
-// 🔹 Proxy API Routes (GET)
+
 app.get("/proxy/api1", (req, res) =>
   proxyApiRequest(req, res, "http://3.111.196.92:8020/api/v1/sample_assignment_api_1/")
 );
@@ -72,8 +72,11 @@ app.get("/proxy/api4", (req, res) =>
 app.get("/proxy/api5", (req, res) =>
   proxyApiRequest(req, res, "http://3.111.196.92:8020/api/v1/sample_assignment_api_5/")
 );
+app.get("/proxy/api3", (req, res) =>
+  proxyApiRequest(req, res, "http://3.111.196.92:8020/api/v1/sample_assignment_api_3/")
+);
 
-// 🔹 Fetch Bar Chart Data
+
 app.get("/api/bardataset", async (req, res) => {
   try {
     const data = await Bardataset.find({});
@@ -90,7 +93,7 @@ app.get("/api/bardataset", async (req, res) => {
   }
 });
 
-// 🔹 Fetch Review Table Data
+
 app.get("/api/reviewtable", async (req, res) => {
   try {
     const data = await ReviewTable.find({});
@@ -109,8 +112,8 @@ app.get("/api/reviewtable", async (req, res) => {
   }
 });
 
-// 🔹 Start Server
+
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => {
-  console.log(`🚀 Server running on http://localhost:${PORT}`);
+  console.log(`Server running on http://localhost:${PORT}`);
 });
