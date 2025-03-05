@@ -16,13 +16,13 @@ function Cards() {
           {
             headers: {
               "Accept": "application/json",
-              "Authorization": "Basic " + btoa("trial:assignment123"), // Encode username:password
+              "Authorization": "Basic " + btoa("trial:assignment123"),
             },
           }
         );
 
         console.log("API Response:", response.data);
-        setData(response.data); // ✅ Store API response in state
+        setData(response.data); 
 
       } catch (err) {
         console.error("Error fetching data:", err);

@@ -6,7 +6,7 @@ import axios from "axios";
 import { Button } from "@mui/material";
 
 function Guage() {
-  const [gaugeValue, setGaugeValue] = useState(50); // Default score
+  const [gaugeValue, setGaugeValue] = useState(50); 
   const [title, setTitle] = useState("Loading...");
   const [message, setMessage] = useState("");
 

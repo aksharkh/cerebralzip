@@ -58,8 +58,8 @@ function Graph() {
     );
   }
 
-  // Extract x and y-axis values
-  const xLabels = data.map((item) => item.date2); // Dates as x-axis
+ 
+  const xLabels = data.map((item) => item.date2); 
   const uniqueCountData = data.map((item) => item.unique_count);
   const cumulativeTweetsData = data.map((item) => item.cumulative_tweets);
 

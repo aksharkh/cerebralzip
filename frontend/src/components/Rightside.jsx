@@ -16,7 +16,7 @@ function Rightside() {
         height: '100%' 
       }}
     >
-      {/* Gauge Card */}
+      
       <Card 
         sx={{ 
           flex: 1, 
@@ -29,7 +29,7 @@ function Rightside() {
         
       </Card>
 
-      {/* Graph Card */}
+      
       <Card 
         sx={{ 
           flex: 1, 
@@ -44,7 +44,7 @@ function Rightside() {
         <Graph />
       </Card>
 
-      {/* Bottom Card (Slightly Smaller) */}
+     
       <Card 
         sx={{ 
           flex: 0.7, 

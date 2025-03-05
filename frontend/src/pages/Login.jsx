@@ -20,7 +20,7 @@ function Login() {
   };
 
   const handleLogin = async () => {
-    setError(""); // Reset error before new request
+    setError(""); 
   
     try {
       console.log("Sending Login Request:", formData);
@@ -30,15 +30,14 @@ function Login() {
         formData,
         {
           headers: { "Content-Type": "application/json" },
-          auth: { username: "trial", password: "assignment123" }, // API Authentication
+          auth: { username: "trial", password: "assignment123" },
         }
       );
   
-      console.log("Full Login Response:", response.data); // ✅ Check API response
-  
+      console.log("Full Login Response:", response.data); 
       if (response.data.message === "Successfully Logged in") {
-        localStorage.setItem("loginStatus", "true"); // Store login status
-        navigate("/dashboard"); // Redirect after successful login
+        localStorage.setItem("loginStatus", "true"); 
+        navigate("/dashboard"); 
       } else {
         console.error("Unexpected API response:", response.data);
         setError(response.data.message || "Login failed.");
@@ -65,12 +64,12 @@ function Login() {
       <Box 
         sx={{
           width: "100%", 
-          maxWidth: 400, // Ensures form does not stretch too wide
-          p: 4, // Padding for spacing
-          boxShadow: 3, // Light shadow for better visibility
-          borderRadius: 2, // Rounded corners
-          bgcolor: "white", // Background color
-          textAlign: "center" // Center text inside the form
+          maxWidth: 400, 
+          p: 4, 
+          boxShadow: 3,
+          borderRadius: 2,
+          bgcolor: "white", 
+          textAlign: "center" 
         }}
       >
         <Typography variant="h5" mb={2}>Login</Typography>

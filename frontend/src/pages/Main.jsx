@@ -15,27 +15,27 @@ function Main() {
         borderRadius: '16px', 
         boxShadow: 3,
         display: 'flex',
-        overflow: 'hidden'  // Prevents internal overflow issues
+        overflow: 'hidden' 
       }}>
         <CardContent sx={{ display: 'flex', width: '100%', height: '100%', padding: 0 }}>
 
-          {/* Sidebar - Fixed width */}
+          
           <Box sx={{ width: '200px', flexShrink: 0, height: '100%' }}>
             <Sidebar />
           </Box>
 
-          {/* Main Dashboard - Takes up most of the space */}
+         
           <Box sx={{ flexGrow: 1, overflow: 'auto', padding: 2,maxHeight: '100%', }}>
             <Maindash />
           </Box>
 
-          {/* Right Side - Fixed width, prevents it from expanding */}
+          
           <Box sx={{ 
             width: '400px', 
             flexShrink: 0, 
             maxheight: '100%', 
             overflow: 'auto',
-            padding: 2 // Adds spacing to the top
+            padding: 2 
           }}>
             <Rightside />
           </Box>

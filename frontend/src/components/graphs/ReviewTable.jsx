@@ -30,7 +30,7 @@ function ReviewTable() {
       try {
         const response = await axios.get("http://localhost:5000/api/reviewtable");
         const formattedData = response.data.map((item, index) => ({
-          id: index + 1, // Assign unique IDs
+          id: index + 1,
           product: item.product,
           soldAmount: item.soldAmount,
           revenue: item.revenue,
@@ -49,7 +49,7 @@ function ReviewTable() {
 
   return (
     <Box sx={{ padding: 1, borderRadius: 2, height: 250 }}>
-      {/* Header Section */}
+      
       <Box display="flex" justifyContent="space-between" alignItems="center" mb={1}>
         <Typography variant="h6" fontWeight="bold">Products</Typography>
         <Button 
@@ -67,7 +67,7 @@ function ReviewTable() {
         </Button>
       </Box>
 
-      {/* Data Grid */}
+      
       <Box sx={{ height: 150, width: '100%' }}>
         <DataGrid
           rows={rows}

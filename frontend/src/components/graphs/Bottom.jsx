@@ -81,14 +81,14 @@ function Bottom() {
         Community feedback
       </Typography>
       
-      {/* Row with Negative, Positive, Neutral in one line */}
+      
       <Box 
         sx={{
           display: "flex",
           justifyContent: "center",
-          gap: 3, // Adds spacing between items
-          mb: 4, // Margin bottom for separation
-          mt: 2, // Margin top for separation
+          gap: 3, 
+          mb: 4, 
+          mt: 2, 
         }}
       >
         <Box textAlign="center">
@@ -105,7 +105,7 @@ function Bottom() {
         </Box>
       </Box>
 
-      {/* Separate Row for "Customers by Device" */}
+      
       <Typography 
         variant="h7" 
         fontWeight="normal" 

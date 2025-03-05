@@ -23,12 +23,12 @@ function Sidebar() {
         boxShadow: 'none',
       }}
     >
-      {/* Company Name */}
+      
       <Typography variant="h5" fontWeight="bold" sx={{ textAlign: 'center', mb: 2 }}>
         Salesway
       </Typography>
 
-      {/* Sidebar List */}
+      
       <List>
         {[
           { icon: <SettingsIcon />, text: 'Settings' },
@@ -41,20 +41,20 @@ function Sidebar() {
           <ListItemButton
             key={index}
             sx={{
-              width: '80%', // Adjust this value as needed
+              width: '80%', 
               
               borderRadius: '12px',
               '&:hover': {
                 backgroundColor: 'white',
                 boxShadow: '0px 4px 8px rgba(0, 0, 0, 0.1)',
-                '& .MuiListItemIcon-root': { color: '#1976D2' } // Change icon color on hover
+                '& .MuiListItemIcon-root': { color: '#1976D2' } 
 
               },
             }}
           >
             <ListItemIcon sx={{
       color: 'black',
-      minWidth: '35px', // Reduce default spacing
+      minWidth: '35px',
       
 
     }}>
@@ -65,16 +65,16 @@ function Sidebar() {
         ))}
       </List>
 
-      {/* Profile Section */}
-      <Box sx={{ marginTop: 'auto', textAlign: 'center', pb: 2 }}>
+      
+    <Box sx={{ marginTop: 'auto', textAlign: 'center', pb: 2 }}>
   <List>
     <ListItemButton
       sx={{
-        width: '80%', // Adjust width as needed
+        width: '80%', 
         display: 'flex',
-        flexDirection: 'row', // Change to row for side-by-side layout
+        flexDirection: 'row', 
         alignItems: 'center',
-        justifyContent: 'center', // Center content horizontally
+        justifyContent: 'center', 
         borderRadius: '12px',
         '&:hover': { backgroundColor: 'white' },
       }}

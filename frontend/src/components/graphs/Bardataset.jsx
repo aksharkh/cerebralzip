@@ -20,7 +20,7 @@ function Bardataset() {
     fetch("http://localhost:5000/api/bardataset")
       .then((res) => res.json())
       .then((data) => {
-        console.log("Graph Data Received:", data); // Debugging
+        console.log("Graph Data Received:", data);
         setDataset(data);
       })
       .catch((error) => {

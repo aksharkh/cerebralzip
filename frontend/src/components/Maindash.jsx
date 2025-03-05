@@ -16,18 +16,18 @@ function Maindash() {
         height: '95%', 
         display: 'flex',
         flexDirection: 'column',
-        overflow: 'hidden',  // Prevents scrolling inside the card
+        overflow: 'hidden',  
         
       }}
     >
-      {/* Header Section */}
+      
       <Box 
         sx={{
           display: 'flex',
           justifyContent: 'space-between',
           alignItems: 'center',
           height: '10%',  
-          width: '100%', // Prevents horizontal overflow
+          width: '100%', 
           paddingBottom: 2,
         }}
       >
@@ -55,27 +55,27 @@ function Maindash() {
         </Box>
       </Box>
 
-      {/* Content Section */}
+      
       <Box 
         sx={{ 
           display: 'flex', 
           flexDirection: 'column', 
           gap: 2, 
           flexGrow: 1, 
-          width: '100%', // Prevents horizontal stretching
+          width: '100%',
         }}
       >
-        {/* Cards Section */}
+        
         <Box sx={{ flex: '1 1 20%' }}>  
           <Cards />
         </Box>
 
-        {/* Bar Dataset */}
+        
         <Box sx={{ flex: '1 1 50%' }}>  
           <Bardataset />
         </Box>
 
-        {/* Review Table */}
+        
         <Box sx={{ flex: '1 1 40%' }}>  
           <ReviewTable />
         </Box>

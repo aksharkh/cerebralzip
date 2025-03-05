@@ -1,4 +1,4 @@
-require("dotenv").config(); // Load environment variables
+require("dotenv").config(); 
 
 const express = require("express");
 const mongoose = require("mongoose");
@@ -6,18 +6,20 @@ const cors = require("cors");
 
 const app = express();
 app.use(cors());
-app.use(express.json()); // Middleware for JSON parsing
+app.use(express.json()); 
 
-// ✅ Connect to MongoDB (Explicitly use "dashboard" database)
 const mongoURI = process.env.MONGO_URI + "/dashboard"; 
 mongoose.connect(mongoURI, {
   useNewUrlParser: true,
   useUnifiedTopology: true,
 })
-.then(() => console.log("✅ Connected to MongoDB - dashboard database"))
-.catch((err) => console.error("❌ MongoDB connection error:", err));
+.then(() => console.log("Connected to MongoDB - dashboard database"))
+.catch((err) => console.error("MongoDB connection error:", err));
 
-// Define Schemas and Models
+
+
+
+
 const bardatasetSchema = new mongoose.Schema({
   Month: String,
   Last_year: Number,
@@ -32,14 +34,18 @@ const reviewtableSchema = new mongoose.Schema({
   rating: Number,
 });
 
+
+
+
 const Bardataset = mongoose.model("bardataset", bardatasetSchema, "bardataset");
 const ReviewTable = mongoose.model("reviewtable", reviewtableSchema, "reviewtable");
 
-// ✅ API Endpoint to Fetch `bardataset`
+
+
 app.get("/api/bardataset", async (req, res) => {
   try {
     const data = await Bardataset.find({});
-    console.log("📊 Bardataset API Response:", data); // Debugging
+    
 
     res.json(
       data.map(item => ({
@@ -54,11 +60,9 @@ app.get("/api/bardataset", async (req, res) => {
   }
 });
 
-// ✅ API Endpoint to Fetch `reviewtable`
 app.get("/api/reviewtable", async (req, res) => {
   try {
     const data = await ReviewTable.find({});
-    console.log("📊 ReviewTable API Response:", data); // Debugging
 
     res.json(
       data.map(item => ({
@@ -75,8 +79,11 @@ app.get("/api/reviewtable", async (req, res) => {
   }
 });
 
-// Start Server
+
+
+
+
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => {
-  console.log(`🚀 Server running on http://localhost:${PORT}`);
+  console.log(`Server running on http://localhost:${PORT}`);
 });
